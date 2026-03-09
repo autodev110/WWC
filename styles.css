@@ -1,0 +1,107 @@
+@font-face {
+ font-family: "JaponesaWeb";
+ src: local("Japonesa"), url("fonts/japonesa-font/Japonesa-rwYK.otf") format("opentype"), url("fonts/japonesa-font/Japonesa-wMl8.ttf") format("truetype");
+ font-display: swap;
+}
+
+body {
+ background: linear-gradient(
+  130deg,
+  #0a5e2a 0%,
+  #1f7a2f 28%,
+  #6d9d1d 56%,
+  #2f8a33 78%,
+  #39b9c7 90%,
+  #9bbf2c 100%
+ );
+ background-size: 220% 220%;
+ animation: ambient-green-shift 36s ease-in-out infinite alternate;
+ color: #dad;
+ margin: 0;
+ padding: 18px 24px;
+ font-family: Optima, sans-serif;
+ font-size: 13pt;
+}
+
+@keyframes ambient-green-shift {
+ 0% {
+  background-position: 0% 35%;
+ }
+
+ 50% {
+  background-position: 100% 65%;
+ }
+
+ 100% {
+  background-position: 15% 45%;
+ }
+}
+
+a {
+ color: #117;
+ text-decoration: none;
+}
+
+#layout {
+ display: grid;
+ grid-template-columns: minmax(250px, 32ch) minmax(640px, 1fr) minmax(240px, 34ch);
+ gap: 24px;
+ align-items: start;
+ justify-content: center;
+}
+
+#main {
+ min-width: 0;
+ font-family: "JaponesaWeb", Optima, sans-serif;
+ font-size: 19pt;
+}
+
+#main div {
+ height: 24pt;
+ white-space: nowrap;
+}
+
+#daruma {
+ min-width: 0;
+ --daruma-scale: 0.90;
+ height: 860px;
+ overflow: hidden;
+ display: flex;
+ justify-content: center;
+}
+
+#daruma-frame {
+ width: calc(100% / var(--daruma-scale));
+ height: calc(860px / var(--daruma-scale));
+ border: 0;
+ background: transparent;
+ display: block;
+ transform: scale(var(--daruma-scale));
+ transform-origin: top center;
+}
+
+#colophon {
+ min-width: 0;
+ color: #0b3;
+ line-height: 1.2;
+}
+
+@media (max-width: 1400px) {
+ #layout {
+  grid-template-columns: minmax(260px, 1fr) minmax(620px, 2fr);
+ }
+
+ #colophon {
+  grid-column: 1 / -1;
+ }
+}
+
+@media (max-width: 1040px) {
+ #layout {
+  grid-template-columns: 1fr;
+ }
+
+ #daruma {
+  height: 640px;
+ }
+}

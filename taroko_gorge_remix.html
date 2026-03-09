@@ -25,31 +25,14 @@ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
 IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
+Daruma ascii image credits:
+------------------------------------------------
+Thank you for visiting https://asciiart.website/
+This ASCII pic can be found at
+https://asciiart.website/art/6289
+submitted by user: rscr
 -->
-<style type="text/css">
-/* <![CDATA[ */
-body {
- background: #062;
- color: #dad;
- margin: 0 24pt 0 24pt;
- font-family: Optima, sans-serif;
- font-size: 13pt;
-}
-div {
- height: 16pt;
-}
-a {
- color: #117;
- text-decoration: none;
-}
-#colophon {
-  float:right;
-  margin-top:12px;
-  color:#0b3;
-  height:60pt;
-}
-/* ]]> */
-</style>
+<link rel="stylesheet" href="styles.css">
 <script>
 var t=0;
 var n=0;
@@ -59,33 +42,117 @@ var below='banks,river,forest,mountains,house,fire,seed,soil,water,vine,snakes,m
 var trans='guide,find,leaving,taught,sharing,show,cultivate,protect,satisfy,cleansing,transform,embrace,destroy,defeated,listen,respect,maintain,practice,attain,carried,revealing,holding,giving,setting,guiding'.split(',');
 var imper='guard,seek,recognize,overcome,submit,remove,stop,rest,drop,follow,wake,strive,meditate,accepting,care'.split(',');
 var intrans='arise,run,grow,flow,remained,suffer,return,become,sitting,living,fall,wandering,blooms,fades,sleeping'.split(',');
-var s='s,'.split(',');
 var texture='bright,clear,pure,muddy,harsh,sweet,tiny,deadly,beautiful,pleasant,ugly,warm,deep,solid,joyful,profound,infinite,eternal,ancient,supreme,temporary,heavenly'.split(',');
+var mass_nouns={
+ radiance:1,sunlight:1,harmony:1,wisdom:1,dharma:1,enlightenment:1,awakening:1,compassion:1,bliss:1,nirvana:1,
+ peace:1,equanimity:1,mindfulness:1,concentration:1,truth:1,freedom:1,guidance:1,light:1,fire:1,water:1,honey:1,
+ greed:1,anger:1,ignorance:1,karma:1,sorrow:1,suffering:1,darkness:1,mud:1,delusion:1
+};
+var plural_nouns={banks:1,mountains:1,snakes:1,mice:1};
 function rand_range(max) {
  return Math.floor(Math.random()*(max+1));
 }
 function choose(array) {
  return array[rand_range(array.length-1)];
 }
-function path() {
- var p=rand_range(1);
- var words=choose(above);
- if ((words=='forest')&&(rand_range(3)==1)) {
-  words='monkeys '+choose(trans);
- } else {
-  words+=s[p]+' '+choose(trans)+s[(p+1)%2];
+function can_pluralize(noun) {
+ return !mass_nouns[noun] && !plural_nouns[noun];
+}
+function noun_is_plural(noun) {
+ return !!plural_nouns[noun];
+}
+function pluralize(noun) {
+ if (noun=='mouse') {
+  return 'mice';
  }
- words+=' the '+choose(below)+choose(s)+'.';
+ if (noun=='lotus') {
+  return 'lotuses';
+ }
+ if (noun.slice(-1)=='y' && 'aeiou'.indexOf(noun.slice(-2,-1))==-1) {
+  return noun.slice(0,-1)+'ies';
+ }
+ if (/([sxz]|sh|ch)$/.test(noun)) {
+  return noun+'es';
+ }
+ return noun+'s';
+}
+function singularize_simple(word) {
+ if (word=='mice') {
+  return 'mouse';
+ }
+ if (word.slice(-3)=='ies') {
+  return word.slice(0,-3)+'y';
+ }
+ if (word.slice(-2)=='es' && /([sxz]|sh|ch)es$/.test(word)) {
+  return word.slice(0,-2);
+ }
+ if (word.slice(-1)=='s' && word.slice(-2)!='ss') {
+  return word.slice(0,-1);
+ }
+ return word;
+}
+function third_person_singular(base) {
+ if (base=='have') {
+  return 'has';
+ }
+ if (base=='do') {
+  return 'does';
+ }
+ if (base.slice(-1)=='y' && 'aeiou'.indexOf(base.slice(-2,-1))==-1) {
+  return base.slice(0,-1)+'ies';
+ }
+ if (/([sxz]|sh|ch|o)$/.test(base)) {
+  return base+'es';
+ }
+ return base+'s';
+}
+function conjugate_transitive(verb, plural_subject) {
+ if (verb.slice(-3)=='ing') {
+  return (plural_subject ? 'are ' : 'is ')+verb;
+ }
+ if (verb=='taught' || verb.slice(-2)=='ed') {
+  return (plural_subject ? 'have ' : 'has ')+verb;
+ }
+ return plural_subject ? verb : third_person_singular(verb);
+}
+function conjugate_intransitive(verb, plural_subject) {
+ var base=verb;
+ if (base=='blooms' || base=='fades') {
+  base=singularize_simple(base);
+ }
+ if (base.slice(-3)=='ing') {
+  return (plural_subject ? 'are ' : 'is ')+base;
+ }
+ if (base=='remained' || base.slice(-2)=='ed') {
+  return (plural_subject ? 'have ' : 'has ')+base;
+ }
+ return plural_subject ? base : third_person_singular(base);
+}
+function choose_subject(pool) {
+ var noun=choose(pool);
+ var plural=noun_is_plural(noun);
+ if (!plural && can_pluralize(noun) && rand_range(4)==1) {
+  noun=pluralize(noun);
+  plural=true;
+ }
+ return {noun:noun, plural:plural};
+}
+function choose_object() {
+ var noun=choose(below);
+ if (!noun_is_plural(noun) && can_pluralize(noun) && rand_range(5)==1) {
+  noun=pluralize(noun);
+ }
+ return noun;
+}
+function path() {
+ var subject=choose_subject(above);
+ var words=subject.noun+' '+conjugate_transitive(choose(trans),subject.plural)+' the '+choose_object()+'.';
  return words;
 }
 function site() {
- var words='';
- if (rand_range(2)==1) {
-  words+=choose(above);
- } else {
-  words+=choose(below);
- }
- words+='s '+choose(intrans)+'.';
+ var pool=(rand_range(2)==1) ? above : below;
+ var subject=choose_subject(pool);
+ var words=subject.noun+' '+conjugate_intransitive(choose(intrans),subject.plural)+'.';
  return words;
 }
 function cave() {
@@ -134,6 +201,11 @@ function poem() {
   <title>Taroko Gorge</title>
 </head>
 <body onload="poem()">
+<div id="layout">
+<div id="main"></div>
+<div id="daruma">
+<iframe id="daruma-frame" src="daruma.txt" title="Daruma ASCII art" scrolling="no"></iframe>
+</div>
 <div id="colophon">
 <div>Taroko Gorge &middot; 2009-01-08</div>
 <del><a href="http://nickm.com">Nick Montfort</a></del><br>
@@ -183,6 +255,6 @@ function poem() {
 <del><a href="https://deenalarsen.net/waaw/">Mehul Desai &amp;<br>Deena Larsen</a></del> <a href="https://deenalarsen.net/waaw/">[MD+DL]</a><br>
 <a href="http://nickm.com">Nick Montfort &middot; 2025-07-25</a>
 </div>
-<div id="main"></div>
+</div>
 </body>
 </html>
