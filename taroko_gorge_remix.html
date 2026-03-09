@@ -62,9 +62,6 @@ function noun_is_plural(noun) {
  return !!plural_nouns[noun];
 }
 function pluralize(noun) {
- if (noun=='mouse') {
-  return 'mice';
- }
  if (noun=='lotus') {
   return 'lotuses';
  }
@@ -77,9 +74,6 @@ function pluralize(noun) {
  return noun+'s';
 }
 function singularize_simple(word) {
- if (word=='mice') {
-  return 'mouse';
- }
  if (word.slice(-3)=='ies') {
   return word.slice(0,-3)+'y';
  }
