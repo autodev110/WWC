@@ -1,6 +1,6 @@
-above=radiance,sky,star,sunlight,torch,harmony,wisdom,dharma,enlightenment,awakening,compassion,buddha,sangha,lotus,celestial,bliss,nirvana,peace,equanimity,mindfulness,concentration,truth,freedom,guidance,light
-below=banks,river,forest,mountains,house,fire,seed,soil,water,vine,snakes,honey,body,sickness,death,greed,anger,ignorance,karma,sorrow,suffering,darkness,delusion,mud,swamp
-trans=guide,find,leaving,taught,sharing,show,cultivate,protect,satisfy,cleansing,transform,embrace,destroy,defeated,listen,respect,maintain,practice,attain,carried,revealing,holding,giving,setting,guiding
-imper=guard,seek,recognize,overcome,submit,remove,stop,rest,drop,follow,wake,strive,meditate,accepting,care
-intrans=arise,run,grow,flow,remained,suffer,return,become,sitting,living,fall,wandering,blooms,fades,sleeping
-texture=bright,clear,pure,muddy,harsh,sweet,tiny,deadly,beautiful,pleasant,ugly,warm,deep,solid,joyful,profound,infinite,eternal,ancient,supreme,temporary,heavenly
+above=radiance,death,sky,star,sunlight,harmony,wisdom,dharma,enlightenment,awakening,compassion,buddha,sangha,lotus,celestial,bliss,nirvana,peace,mindfulness,concentration,truth,freedom,guidance,light,sunyata,anatman,dukkha,equanimity,interbeing,nonself,emptiness,being,absurdity,finitude,koan,samsara
+below=river,forest,mountains,house,fire,seed,soil,water,vine,snakes,honey,body,sickness,death,greed,anger,ignorance,karma,sorrow,suffering,darkness,delusion,void,nothingness,silence,meaning,ego,time,abyss
+trans=guide,find,leaving,taught,sharing,show,cultivate,protect,satisfy,cleansing,transform,embrace,destroy,defeated,listen,respect,maintain,practice,attain,carried,revealing,holding,giving,setting,guiding,contemplate,question,confront,renounce,witness,dissolve,unmask,transcend,emptying
+imper=guard,seek,recognize,overcome,submit,remove,stop,rest,drop,follow,wake,strive,meditate,accepting,care,contemplate,renounce,witness,surrender,unlearn,empty
+intrans=arise,run,grow,wake,flow,remained,suffer,return,become,sitting,living,fall,wandering,blooms,fades,sleeping,awaken,linger,vanish,endure,questioning,doubting
+texture=bright,clear,pure,harsh,sweet,eternal,finite,infinite,deadly,beautiful,pleasant,ugly,warm,deep,solid,joyful,profound,ancient,supreme,temporary,heavenly,paradoxical,nameless,hollow,numinous,silent,formless,absurd,lucid
