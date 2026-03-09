@@ -88,19 +88,19 @@ a {
  font-family: "Courier New", monospace;
  font-size: 11.5px;
  line-height: 1.25;
- color: #e9f8ff;
+ color: #2a4e9a;
 }
 
 @supports ((-webkit-background-clip: text) or (background-clip: text)) {
  #daruma-art {
   background: linear-gradient(
    130deg,
-   #d8f6ff 0%,
-   #92f4ff 28%,
-   #5ea9ff 52%,
-   #10244f 68%,
-   #b786ff 84%,
-   #d8f6ff 100%
+   #09112d 0%,
+   #10244f 24%,
+   #173878 48%,
+   #0d2052 66%,
+   #5a1021 84%,
+   #0a1638 100%
   );
   background-size: 220% 220%;
   animation: daruma-spectrum-shift 36s ease-in-out infinite alternate;
