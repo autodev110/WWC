@@ -95,12 +95,12 @@ a {
  #daruma-art {
   background: linear-gradient(
    130deg,
-   #ffffff 0%,
+   #d8f6ff 0%,
    #92f4ff 28%,
    #5ea9ff 52%,
    #10244f 68%,
    #b786ff 84%,
-   #ffffff 100%
+   #d8f6ff 100%
   );
   background-size: 220% 220%;
   animation: daruma-spectrum-shift 36s ease-in-out infinite alternate;
