@@ -37,6 +37,20 @@ body {
  }
 }
 
+@keyframes daruma-spectrum-shift {
+ 0% {
+  background-position: 0% 35%;
+ }
+
+ 50% {
+  background-position: 100% 65%;
+ }
+
+ 100% {
+  background-position: 20% 45%;
+ }
+}
+
 a {
  color: #117;
  text-decoration: none;
@@ -74,8 +88,26 @@ a {
  font-family: "Courier New", monospace;
  font-size: 11.5px;
  line-height: 1.25;
- color: #dad;
- background: transparent;
+ color: #e9f8ff;
+}
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+ #daruma-art {
+  background: linear-gradient(
+   130deg,
+   #ffffff 0%,
+   #92f4ff 28%,
+   #5ea9ff 56%,
+   #b786ff 82%,
+   #ffffff 100%
+  );
+  background-size: 220% 220%;
+  animation: daruma-spectrum-shift 36s ease-in-out infinite alternate;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+ }
 }
 
 #colophon {
