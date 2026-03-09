@@ -194,7 +194,24 @@ function do_line() {
  last.appendChild(document.createTextNode(text));
  main.appendChild(last);
 }
+function load_daruma() {
+ var art=document.getElementById('daruma-art');
+ if (!art) {
+  return;
+ }
+ fetch('daruma.txt').then(function(response) {
+  if (!response.ok) {
+   throw new Error('Could not load daruma.txt');
+  }
+  return response.text();
+ }).then(function(text) {
+  art.textContent=text;
+ }).catch(function() {
+  art.textContent='Could not load daruma.txt';
+ });
+}
 function poem() {
+ load_daruma();
  setInterval(do_line, 1200);
 }
 </script>
@@ -204,7 +221,7 @@ function poem() {
 <div id="layout">
 <div id="main"></div>
 <div id="daruma">
-<iframe id="daruma-frame" src="daruma.txt" title="Daruma ASCII art" scrolling="no"></iframe>
+<pre id="daruma-art" aria-label="Daruma ASCII art"></pre>
 </div>
 <div id="colophon">
 <div>Taroko Gorge &middot; 2009-01-08</div>

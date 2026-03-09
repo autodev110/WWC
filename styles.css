@@ -63,21 +63,19 @@ a {
 
 #daruma {
  min-width: 0;
- --daruma-scale: 0.90;
- height: 860px;
- overflow: hidden;
  display: flex;
  justify-content: center;
+ align-items: flex-start;
 }
 
-#daruma-frame {
- width: calc(100% / var(--daruma-scale));
- height: calc(860px / var(--daruma-scale));
- border: 0;
+#daruma-art {
+ margin: 0;
+ white-space: pre;
+ font-family: "Courier New", monospace;
+ font-size: 9px;
+ line-height: 1;
+ color: #dad;
  background: transparent;
- display: block;
- transform: scale(var(--daruma-scale));
- transform-origin: top center;
 }
 
 #colophon {
@@ -99,9 +97,5 @@ a {
 @media (max-width: 1040px) {
  #layout {
   grid-template-columns: 1fr;
- }
-
- #daruma {
-  height: 640px;
  }
 }
